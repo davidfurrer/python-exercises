@@ -22,5 +22,5 @@ jobs:
                   if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
             - name: Test with pytest
               run: |
-                  chmod +x 01_hello/hello.py
+                  chmod +x 01_hello/solutions/hello.py
                   pytest -xv 01_hello/test.py
