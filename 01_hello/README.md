@@ -1,7 +1,5 @@
 # Chapter 1: Hello, World!
 
-https://www.youtube.com/playlist?list=PLhOuww6rJJNP7UvTeF6_tQ1xcubAs9hvO
-
 Write a program to enthusiastically greet the world:
 
 ```
@@ -44,4 +42,56 @@ test.py::test_default PASSED                                             [ 75%]
 test.py::test_input PASSED                                               [100%]
 
 ============================== 4 passed in 0.41s ===============================
+```
+
+Tips:
+
+You can use the [template.py](template.py) file as a jumping off point.
+
+### What is argsparse?
+
+It's a module that comes with the standard python library (does not need to be installed).
+
+Minimal example:
+
+File print_input.py
+
+```python
+import argparse
+
+def get_args():
+  """Get command-line arguments"""
+  parser = argparse.ArgumentParser(description="Prints the word you pass")
+  parser.add_argument("--input", type=str, required=True, help="word to print")
+  return parser.parse_args()
+
+
+
+if __name__ == '__main__':
+    args = get_args()
+    print(args.input)
+```
+
+Will function like this:
+
+```
+python print_input.py --input hello
+```
+
+prints:
+
+```
+hello
+```
+
+or:
+
+```
+python print_input.py --input world
+```
+
+prints:
+
+```
+world
 ```
