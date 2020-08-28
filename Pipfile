@@ -4,15 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+flake8 = "*"
+yapf = "*"
 
 [packages]
-black = "*"
-flake8 = "*"
 ipython = "*"
 mypy = "*"
 pylint = "*"
 pytest = "*"
-yapf = "*"
+cryptography = "*"
 
 [requires]
 python_version = "3.7"
