@@ -5,22 +5,25 @@ on: push
 jobs:
     build:
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                python-version: [3.6, 3.7, 3.8]
 
         steps:
             - uses: actions/checkout@v2
-            - name: Set up Python ${{ matrix.python-version }}
+            - name: Set up Python 3.7
               uses: actions/setup-python@v2
               with:
-                  python-version: ${{ matrix.python-version }}
+                  python-version: 3.7
+            - uses: dschep/install-pipenv-action@v1
             - name: Install dependencies
               run: |
-                  python -m pip install --upgrade pip
-                  pip install pytest
-                  if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+                  pipenv install
             - name: Test with pytest
               run: |
                   chmod +x 01_hello/solutions/hello.py
-                  pytest -xv 01_hello/test.py
+                  pipenv run pytest -xv 01_hello/test.py
+            - name: decrypt
+              run: |
+                  chmod +x src/decrypt.py
+                  pipenv run python src/decrypt.py -k ${{ secrets.SOLUTIONS_KEY }}
+                  cat 01_hello/solutions/hello_test.py
+
+# ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
